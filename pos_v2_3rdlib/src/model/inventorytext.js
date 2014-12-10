@@ -3,7 +3,8 @@ function InventoryText(cartItems){
 }
 InventoryText.prototype.getInventoryText = function(){
   cartItems = this.cartItems;
-  var cartItemText = getCartItemsText(cartItems);
+  var findalltext = new FindAllText(cartItems);
+  var cartItemText = findalltext.getCartItemsText();
   var promotionText = getPromotionText(cartItems);
   var summaryText = getSummaryText(cartItems);
   var formattedDateString = getDate();
