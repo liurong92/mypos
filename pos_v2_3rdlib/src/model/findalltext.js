@@ -42,7 +42,7 @@ FindAllText.prototype.getPromotionText = function() {
     if(promotionArrays.length > 0) {
       _.forEach(promotionArrays,function(promotionArray){
         promotionText += '名称：' + promotionArray.name +
-        '，数量：' + promotionArray.num +
+                         '，数量：' + promotionArray.num +
         promotionArray.unit + '\n';
       });
     }
@@ -50,9 +50,30 @@ FindAllText.prototype.getPromotionText = function() {
   return promotionText;
 }
 
-function getCountOfCart(){
-  var promotions = loadPromotions();
-  for(var i = 0; i < promotions.length; i++) {
-    return promotions[i];
-  }
+FindAllText.prototype.getSummaryText = function() {
+  cartItems = this.cratItems;
+  var summaryText = '';
+  var sum = 0;
+  var allTotal = getAllTotal(cartItems);
+  var promotionTotal = getPromotionTotal(cartItems);
+  sum = allTotal - promotionTotal;
+  summaryText +='总计：' + sum.toFixed(2) +
+                '(元)\n' +
+                '节省：' + promotionTotal.toFixed(2) +
+                '(元)\n';
+  return summaryText;
+}
+
+FinAllText.prototype.getSummaryText = function(){
+  cartItems = this.cartItems;
+  var summaryText = '';
+  var sum = 0;
+  var allTotal = getAllTotal(cartItems);
+  var promotionTotal = getPromotionTotal(cartItems);
+  sum = allTotal - promotionTotal;
+  summaryText +='总计：' + sum.toFixed(2) +
+  '(元)\n' +
+  '节省：' + promotionTotal.toFixed(2) +
+  '(元)\n';
+  return summaryText;
 }

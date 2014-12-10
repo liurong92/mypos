@@ -34,9 +34,9 @@ function getDate(){
   minute = dateDigitToString(currentDate.getMinutes()),
   second = dateDigitToString(currentDate.getSeconds()),
   formattedDateString = year + '年' +
-  month + '月' +
-  date + '日 ' +
-  hour + ':' +
-  minute + ':' + second;
+                        month + '月' +
+                        date + '日 ' +
+                        hour + ':' +
+                        minute + ':' + second;
   return formattedDateString;
 }
