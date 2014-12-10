@@ -1,5 +1,8 @@
-function getCartItems(tags){
-  this.tags = tags;
+function FindCartItems(tags){
+  this.tags= tags;
+}
+FindCartItems.prototype.getCartItems = function(){
+  var tags = this.tags;
   var cartItems = [];
   var loadAllItem = new loadAllItems();
 
@@ -21,7 +24,8 @@ function getCartItems(tags){
       var item = _.find(loadAllItem, function(loadAllItem){
         return loadAllItem.barcode === barcode;
       });
-      cartItems.push({item:item,count:count});
+      cartitem = new CartItems(item,count);
+      cartItems.push(cartitem);
     }
   });
   return cartItems;
