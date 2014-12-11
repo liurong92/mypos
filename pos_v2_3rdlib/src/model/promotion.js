@@ -3,24 +3,11 @@ function Promotion(type, barcodes) {
     this.barcodes = barcodes || [];
 }
 
-function getCountOfCart(){
-  var promotions = loadPromotions();
-  for(var i = 0; i < promotions.length; i++) {
-    return promotions[i];
-  }
-}
 
 Promotion.prototype.getPromotionCount = function(cartItems) {
   var promotionCount = 0;
-  //var promotions = loadPromotions();
-  // var loadPromotions = loadPromotions();
-  // // var promotions = _.find(loadPromotions,function(loadPromotion){
-  // //   return loadPromotion;
-  // // });
-  var promotions = getCountOfCart();
-
-  var promotion = _.find(promotions, function(promotion) {
-    return promotion;
+  var promotions = _.find(loadPromotions(),function(loadPromotion){
+    return loadPromotion;
   });
 
   _.forEach(promotions.barcodes,function(barcode){
@@ -34,9 +21,8 @@ Promotion.prototype.getPromotionCount = function(cartItems) {
 
 Promotion.prototype.getPromotionArray = function(cartItems) {
   var promotionArray = [];
-  var promotions = getCountOfCart();
-  var promotion = _.find(promotions, function(promotion) {
-    return promotion;
+  var promotions = _.find(loadPromotions(),function(loadPromotion){
+    return loadPromotion;
   });
 
   _.forEach(promotions.barcodes,function(barcode){
