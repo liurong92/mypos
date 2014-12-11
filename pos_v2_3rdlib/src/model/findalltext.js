@@ -12,8 +12,9 @@ function getCountOfCart(){
 FindAllText.prototype.getCartItemsText = function(){
   cartItems = this.cartItems;
   cartItemsText = '';
+  var promotion = new Promotion();
   _.forEach(cartItems,function(cartItem){
-    var promotionCount = getPromotionCount(cartItem);
+    var promotionCount = promotion.getPromotionCount(cartItem);
     var proCount = parseInt(promotionCount/3);
     var subtotal = 0;
     item = cartItem.item;
@@ -37,8 +38,9 @@ FindAllText.prototype.getPromotionText = function() {
   cartItems = this.cartItems;
   var promotionText = '';
   var promotionArrays = [];
+  var promotion = new Promotion();
   _.forEach(cartItems,function(cartItem){
-    promotionArrays = getPromotionArray(cartItem);
+    promotionArrays = promotion.getPromotionArray(cartItem);
     if(promotionArrays.length > 0) {
       _.forEach(promotionArrays,function(promotionArray){
         promotionText += '名称：' + promotionArray.name +
@@ -54,7 +56,10 @@ FindAllText.prototype.getSummaryText = function() {
   cartItems = this.cratItems;
   var summaryText = '';
   var sum = 0;
-  var allTotal = getAllTotal(cartItems);
+  var allTotal = 0;
+  _.forEach(cartItems,function(cartItem){
+    allTotal += cartItem.item.price * cartItem.count;
+  });
   var promotionTotal = getPromotionTotal(cartItems);
   sum = allTotal - promotionTotal;
   summaryText +='总计：' + sum.toFixed(2) +
@@ -64,12 +69,24 @@ FindAllText.prototype.getSummaryText = function() {
   return summaryText;
 }
 
-FinAllText.prototype.getSummaryText = function(){
-  cartItems = this.cartItems;
+FindAllText.prototype.getSummaryText = function(cartItems) {
   var summaryText = '';
   var sum = 0;
-  var allTotal = getAllTotal(cartItems);
-  var promotionTotal = getPromotionTotal(cartItems);
+  var allTotal = 0;
+  var promotionTotal = 0;
+  var promotionArray = [];
+  var promotion = new Promotion();
+  _.forEach(cartItems,function(cartItem){
+    allTotal += cartItem.item.price * cartItem.count;
+  });
+  _.forEach(cartItems,function(cartItem){
+    promotionArrays = promotion.getPromotionArray(cartItem);
+    if(promotionArrays.length > 0) {
+      _.forEach(promotionArrays,function(promotionArray){
+        promotionTotal += promotionArray.price * promotionArray.num;
+      });
+    }
+  });
   sum = allTotal - promotionTotal;
   summaryText +='总计：' + sum.toFixed(2) +
   '(元)\n' +

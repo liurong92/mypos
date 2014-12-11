@@ -6,7 +6,7 @@ InventoryText.prototype.getInventoryText = function(){
   var findalltext = new FindAllText(cartItems);
   var cartItemText = findalltext.getCartItemsText();
   var promotionText = findalltext.getPromotionText();
-  var summaryText = getSummaryText(cartItems);
+  var summaryText = findalltext.getSummaryText(cartItems);
   var formattedDateString = getDate();
   var inventoryText ='***<没钱赚商店>购物清单***\n' +
                      '打印时间：' + formattedDateString + '\n' +
