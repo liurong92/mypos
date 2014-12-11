@@ -4,7 +4,7 @@ function ScannerTags(tags){
 
 ScannerTags.prototype.splitTags = function() {
   var cartItems = [];
-  var loadAllItem = loadAllItems();
+  var allItems = loadAllItems();
   var that = this;
 
   _.forEach(this.tags, function(tag){
@@ -15,11 +15,12 @@ ScannerTags.prototype.splitTags = function() {
     if(tagsArray[1]){
       count = parseFloat(tagsArray[1]);
     }
-    cartItems = that.getCartItems(cartItems, count, loadAllItem, barcode);
+    cartItems = that.getCartItems(cartItems, count, allItems, barcode);
   });
   return cartItems;
 };
-ScannerTags.prototype.getCartItems = function(cartItems, count, loadAllItem, barcode) {
+
+ScannerTags.prototype.getCartItems = function(cartItems, count, allItems, barcode) {
   var cartItem = _.find(cartItems, function(cartItem) {
     return cartItem.item.barcode === barcode;
   });
@@ -27,8 +28,8 @@ ScannerTags.prototype.getCartItems = function(cartItems, count, loadAllItem, bar
   if (cartItem) {
     cartItem.count += count;
   } else {
-    var item = _.find(loadAllItem, function(loadAllItem) {
-      return loadAllItem.barcode === barcode;
+    var item = _.find(allItems, function(allItem) {
+      return allItem.barcode === barcode;
     });
     cartItems.push(new CartItems(item,count));
   }
