@@ -1,8 +1,8 @@
-function FindAllText(cartItems){
+function KindText(cartItems){
   this.cartItems = cartItems;
 }
 
-FindAllText.prototype.getCartItemsText = function(cartItems){
+KindText.prototype.getCartItemsText = function(cartItems){
   cartItemsText = '';
   var promotion = new Promotion();
   _.forEach(cartItems,function(cartItem){
@@ -26,7 +26,7 @@ FindAllText.prototype.getCartItemsText = function(cartItems){
   return cartItemsText;
 };
 
-FindAllText.prototype.getPromotionText = function(cartItems) {
+KindText.prototype.getPromotionText = function(cartItems) {
   var promotionText = '';
   var promotionArrays = [];
   var promotion = new Promotion();
@@ -45,7 +45,7 @@ FindAllText.prototype.getPromotionText = function(cartItems) {
   return promotionText;
 };
 
-FindAllText.prototype.getSummaryText = function(cratItems) {
+KindText.prototype.getSummaryText = function(cratItems) {
   var summaryText = '';
   var sum = 0;
   var allTotal = 0;
@@ -61,7 +61,7 @@ FindAllText.prototype.getSummaryText = function(cratItems) {
   return summaryText;
 };
 
-FindAllText.prototype.getSummaryText = function(cartItems) {
+KindText.prototype.getSummaryText = function(cartItems) {
   var summaryText = '';
   var sum = 0;
   var allTotal = 0;
