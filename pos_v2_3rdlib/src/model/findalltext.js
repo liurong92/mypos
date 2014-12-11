@@ -2,13 +2,6 @@ function FindAllText(cartItems){
   this.cartItems = cartItems;
 }
 
-function getCountOfCart(){
-  var promotions = loadPromotions();
-  for(var i = 0; i < promotions.length; i++) {
-    return promotions[i];
-  }
-}
-
 FindAllText.prototype.getCartItemsText = function(cartItems){
   cartItemsText = '';
   var promotion = new Promotion();

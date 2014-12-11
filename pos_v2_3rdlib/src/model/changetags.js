@@ -29,4 +29,4 @@ FindCartItems.prototype.getCartItems = function(){
     }
   });
   return cartItems;
-}
+};
