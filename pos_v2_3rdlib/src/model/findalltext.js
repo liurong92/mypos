@@ -30,9 +30,11 @@ FindAllText.prototype.getPromotionText = function(cartItems) {
   var promotionText = '';
   var promotionArrays = [];
   var promotion = new Promotion();
-  _.forEach(cartItems,function(cartItem){
+  _.forEach(cartItems, function(cartItem){
+
     promotionArrays = promotion.getPromotionArray(cartItem);
     if(promotionArrays.length > 0) {
+
       _.forEach(promotionArrays,function(promotionArray){
         promotionText += '名称：' + promotionArray.name +
                          '，数量：' + promotionArray.num +
@@ -69,10 +71,11 @@ FindAllText.prototype.getSummaryText = function(cartItems) {
   _.forEach(cartItems,function(cartItem){
     allTotal += cartItem.item.price * cartItem.count;
   });
-  _.forEach(cartItems,function(cartItem){
+
+  _.forEach(cartItems, function(cartItem) {
     promotionArrays = promotion.getPromotionArray(cartItem);
     if(promotionArrays.length > 0) {
-      _.forEach(promotionArrays,function(promotionArray){
+      _.forEach(promotionArrays, function(promotionArray) {
         promotionTotal += promotionArray.price * promotionArray.num;
       });
     }
