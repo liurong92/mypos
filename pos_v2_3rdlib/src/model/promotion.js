@@ -3,39 +3,21 @@ function Promotion(type, barcodes) {
     this.barcodes = barcodes || [];
 }
 
-Promotion.prototype.getCartItem = function(cartItems) {
+Promotion.prototype.getPromotionCount = function(cartItems) {
+  var promotionCount = 0;
+  var cartItem = [];
   var promotions = loadPromotions();
 
   var promotion = _.find(promotions,function(promotion) {
     return promotion;
   });
-  console.log(promotion);
-  _.forEach(promotion.barcodes, function(barcode) {
+
+  _.forEach(promotion.barcodes,function(barcode){
     if (cartItems.item.barcode === barcode &&
       promotion.type === 'BUY_TWO_GET_ONE_FREE') {
-        return cartItems;
-    }
-  });
-};
-
-Promotion.prototype.getPromotionCount = function(cartItems) {
-  var promotionCount = 0;
-  // var cartItem = [];
-  // var promotions = loadPromotions();
-  //
-  // var promotion = _.find(promotions,function(promotion) {
-  //   return promotion;
-  // });
-  //
-  // _.forEach(promotion.barcodes,function(barcode){
-  //   if (cartItems.item.barcode === barcode &&
-  //     promotion.type === 'BUY_TWO_GET_ONE_FREE') {
-  //       promotionCount = cartItems.count;
-  //     }
-  //   });
-  // return promotionCount;
-  var cartItem = this.getCartItem(cartItems);
-  promotionCount = cartItems.count;
+        promotionCount = cartItems.count;
+      }
+    });
   return promotionCount;
 };
 
@@ -47,14 +29,16 @@ Promotion.prototype.getPromotionArray = function(cartItems) {
     return promotion;
   });
 
+
+
   _.forEach(promotion.barcodes,function(barcode) {
   if (cartItems.item.barcode === barcode &&
     promotion.type === 'BUY_TWO_GET_ONE_FREE') {
       promotionArray.push({
-        name: cartItems.item.name,
-        num: parseInt(cartItems.count/3),
-        unit: cartItems.item.unit,
-        price: cartItems.item.price
+        name: cartItems.getItem().name,
+        num: parseInt(cartItems.getCount()/3),
+        unit: cartItems.getItem().unit,
+        price: cartItems.getItem().price
       });
   }
   });
